@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import * as $ from 'jquery';
+import * as M from 'materialize-css';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'SLAT-frontend';
+  title = 'Library';
+
+  ngOnInit() {
+    M.AutoInit();
+  }
 }

@@ -1,0 +1,13 @@
+.book-icon {
+  font-size: 4em;
+  margin-right: 20px;
+}
+
+.book-card-title {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.book-card-content {
+  padding-top: 0 !important;
+}
