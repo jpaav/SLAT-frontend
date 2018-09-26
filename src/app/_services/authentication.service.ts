@@ -26,4 +26,8 @@ export class AuthenticationService {
     // remove user from local storage to log user out
     localStorage.removeItem('Authorization');
   }
+
+  loggedIn() {
+    return (localStorage.getItem('Authorization') != null);
+  }
 }

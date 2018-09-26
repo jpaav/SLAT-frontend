@@ -9,8 +9,6 @@ import * as M from 'materialize-css';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [AuthenticationService],
-  // moduleId: 'login',
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
@@ -22,17 +20,18 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private authenticationService: AuthenticationService) {
+    private authService: AuthenticationService) {
   }
 
   ngOnInit() {
+    // Go to library if they are logged in
+    if (this.authService.loggedIn()) {
+      this.router.navigate(['library']);
+    }
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
-
-    // reset login status
-    this.authenticationService.logout();
 
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/library';
@@ -58,7 +57,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.loading = true;
-    this.authenticationService.login(this.f.username.value, this.f.password.value)
+    this.authService.login(this.f.username.value, this.f.password.value)
       .pipe(first())
       .subscribe(
         data => {

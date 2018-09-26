@@ -51,6 +51,13 @@ export class BooksComponent implements OnInit {
     this.getBooks().subscribe( books => {
       this.books = books;
     });
+    document.addEventListener('DOMContentLoaded', function() {
+      const elems = document.querySelectorAll('.fixed-action-btn');
+      M.FloatingActionButton.init(elems);
+    });
   }
 
+  openAddModal() {
+    M.Modal.getInstance(document.getElementById('newBookModal')).open();
+  }
 }

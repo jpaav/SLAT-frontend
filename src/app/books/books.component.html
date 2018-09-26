@@ -10,12 +10,19 @@
             </p>
           </div>
         </div>
-
         <a href="#" class="material-icons book-icon valign-wrapper">info</a>
         <a href="#" class="material-icons book-icon valign-wrapper">cloud_upload</a>
-
       </div>
     </div>
   </div>
 </div>
-
+<div class="fixed-action-btn">
+  <a class="btn-floating btn-large red">
+    <i class="large material-icons">mode_edit</i>
+  </a>
+  <ul>
+    <li><a class="btn-floating green" (click)="openAddModal()"><i class="material-icons">add</i></a></li>
+    <li><a class="btn-floating yellow darken-1" disabled=""><i class="material-icons">code</i></a></li>
+  </ul>
+</div>
+<app-newbook></app-newbook>
