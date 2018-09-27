@@ -5,6 +5,7 @@ import {catchError, map, tap, timeout} from 'rxjs/operators';
 import {Book} from '../book';
 import {Observable, of} from 'rxjs/index';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {BookApiService} from '../_services/book-api.service';
 
 @Component({
   selector: 'app-newbook',
@@ -26,7 +27,8 @@ export class NewbookComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private http: HttpClient) {
+    private http: HttpClient,
+    private api: BookApiService) {
   }
 
   ngOnInit() {
@@ -49,24 +51,17 @@ export class NewbookComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+    this.loading = true;
     // M.toast({html: this.f.title});
-    this.createBook(this.f.title.value, this.f.authors.value, this.f.year.value, this.f.edition.value)
+    this.api.createBook(this.f.title.value, this.f.authors.value, this.f.year.value, this.f.edition.value)
       .subscribe(
         (res) => {
+          this.loading = false;
         },
-        err => console.log(err), // error
+        err => M.toast({html: 'Book Creation Failed.'}), // error
         () => M.toast({html: 'Created book.'}) // complete
     );
   }
-
-  createBook (title: string, authors: string, year: string, edition: string): Observable<Book> {
-    this.loading = true;
-    return this.http.post<Book>(this.bookUrl, {'title': title, 'authors': authors, 'year': year, 'edition': edition}, this.httpOptions)
-      .pipe(
-        catchError(this.handleError('createBook', null))
-      );
-  }
-
 
   closeAddModal() {
     M.Modal.getInstance(document.getElementById('newBookModal')).close();

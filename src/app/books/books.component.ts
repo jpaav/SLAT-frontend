@@ -5,6 +5,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {catchError, tap} from 'rxjs/operators';
 import {T} from '@angular/core/src/render3';
 import * as M from 'materialize-css';
+import {BookApiService} from '../_services/book-api.service';
 
 @Component({
   selector: 'app-books',
@@ -13,49 +14,21 @@ import * as M from 'materialize-css';
 })
 export class BooksComponent implements OnInit {
   loading = false;
-  httpOptions = {
-    headers: new HttpHeaders(
-      {'Authorization': localStorage.getItem('Authorization')}
-    )
-  };
-
-  booksUrl = 'https://slat-backend.herokuapp.com/api/books/';
-
   books: Book[];
 
   constructor(
-  private http: HttpClient) { }
+  private api: BookApiService) { }
 
-  getBooks (): Observable<Book[]> {
-    this.loading = true;
-    return this.http.get<Book[]>(this.booksUrl, this.httpOptions)
-      .pipe(
-        tap((books) => {
-          M.toast({html: 'Fetched books'});
-          this.loading = false;
-        }),
-        catchError(this.handleError('getBooks', []))
-      );
-  }
-
-  /**
- * Handle Http operation that failed.
- * Let the app continue.
- * @param operation - name of the operation that failed
- * @param result - optional value to return as the observable result
- */
-  private handleError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      M.toast({html: 'Getting books from server failed.'});
-      return of(result as T);
-    };
-  }
 
   ngOnInit() {
-    this.getBooks().subscribe( (books) => {
+    this.loading = true;
+    this.api.getBooks().subscribe( (books) => {
       this.books = books;
-    });
+      this.loading = false;
+    },
+      () => M.toast({html: 'Fetching books failed'}),
+      () => M.toast({html: 'Fetched books'})
+      );
     document.addEventListener('DOMContentLoaded', function() {
       const elems = document.querySelectorAll('.fixed-action-btn');
       M.FloatingActionButton.init(elems);
