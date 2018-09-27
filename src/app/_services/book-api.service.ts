@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Observable, of} from 'rxjs/index';
+import {Observable, of, Subject} from 'rxjs/index';
 import * as M from 'materialize-css';
 import {catchError, tap} from 'rxjs/operators';
 import {Book} from '../book';
@@ -16,6 +16,7 @@ export class BookApiService {
   };
   apiUrl = 'https://slat-backend.herokuapp.com/api/';
   booksUrl = this.apiUrl + 'books/';
+  createBookChange: Subject<string> = new Subject<string>();
 
 
   constructor(private http: HttpClient) { }
@@ -28,6 +29,7 @@ export class BookApiService {
   }
 
   createBook (title: string, authors: string, year: string, edition: string): Observable<Book> {
+    this.createBookChange.next();
     return this.http.post<Book>(this.booksUrl, {'title': title, 'authors': authors, 'year': year, 'edition': edition}, this.httpOptions)
       .pipe(
         catchError(this.handleError('createBook', null))

@@ -16,14 +16,6 @@ export class NewbookComponent implements OnInit {
   newBookForm: FormGroup;
   submitted = false;
   loading = false;
-  bookUrl = 'http://slat-backend.herokuapp.com/api/books/';
-  httpOptions = {
-    headers: new HttpHeaders(
-      {
-        'Authorization': localStorage.getItem('Authorization'),
-      }
-    )
-  };
 
   constructor(
     private formBuilder: FormBuilder,
@@ -57,9 +49,12 @@ export class NewbookComponent implements OnInit {
       .subscribe(
         (res) => {
           this.loading = false;
+          this.closeAddModal();
         },
         err => M.toast({html: 'Book Creation Failed.'}), // error
-        () => M.toast({html: 'Created book.'}) // complete
+        () => {
+          M.toast({html: 'Created book.'});
+        } // complete
     );
   }
 

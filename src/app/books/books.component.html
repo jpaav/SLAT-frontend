@@ -3,6 +3,9 @@
     <div class="indeterminate teal accent-4"></div>
   </div>
 </div>
+<div *ngIf="showUpdateBtn" class="center" style="margin-top: 10px;">
+  <button (click)="getBooks()" class="btn">Reload Books</button>
+</div>
 <div *ngIf="books">
   <div *ngFor="let book of books" class="row">
     <div class="col s10 offset-s1">

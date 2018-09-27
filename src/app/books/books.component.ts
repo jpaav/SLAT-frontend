@@ -1,11 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnChanges, OnInit} from '@angular/core';
 import {Book} from '../book';
-import {Observable, of} from 'rxjs';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {catchError, tap} from 'rxjs/operators';
-import {T} from '@angular/core/src/render3';
 import * as M from 'materialize-css';
 import {BookApiService} from '../_services/book-api.service';
+import {NewbookComponent} from '../newbook/newbook.component';
 
 @Component({
   selector: 'app-books',
@@ -14,25 +11,34 @@ import {BookApiService} from '../_services/book-api.service';
 })
 export class BooksComponent implements OnInit {
   loading = false;
+  showUpdateBtn = false;
   books: Book[];
 
   constructor(
-  private api: BookApiService) { }
-
+    private api: BookApiService) {
+    api.createBookChange.subscribe(() => {
+      this.showUpdateBtn = true;
+    });
+  }
 
   ngOnInit() {
-    this.loading = true;
-    this.api.getBooks().subscribe( (books) => {
-      this.books = books;
-      this.loading = false;
-    },
-      () => M.toast({html: 'Fetching books failed'}),
-      () => M.toast({html: 'Fetched books'})
-      );
-    document.addEventListener('DOMContentLoaded', function() {
+    this.getBooks();
+    document.addEventListener('DOMContentLoaded', function () {
       const elems = document.querySelectorAll('.fixed-action-btn');
       M.FloatingActionButton.init(elems);
     });
+  }
+
+  getBooks() {
+    this.showUpdateBtn = false;
+    this.loading = true;
+    this.api.getBooks().subscribe((books) => {
+        this.books = books;
+        this.loading = false;
+      },
+      () => M.toast({html: 'Fetching books failed'}),
+      () => M.toast({html: 'Fetched books'})
+    );
   }
 
   openAddModal() {
