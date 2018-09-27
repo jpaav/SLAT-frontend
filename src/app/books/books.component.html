@@ -1,3 +1,8 @@
+<div *ngIf="loading">
+  <div class="progress" style="margin: 0;">
+    <div class="indeterminate teal accent-4"></div>
+  </div>
+</div>
 <div *ngIf="books">
   <div *ngFor="let book of books" class="row">
     <div class="col s10 offset-s1">
@@ -10,14 +15,18 @@
             </p>
           </div>
         </div>
-        <a href="#" class="material-icons book-icon valign-wrapper">info</a>
-        <a href="#" class="material-icons book-icon valign-wrapper">cloud_upload</a>
+        <a href="#" class="valign-wrapper teal-text ">
+          <i class="book-icon material-icons">info</i>
+        </a>
+        <a href="#" class="valign-wrapper teal-text">
+          <i class="book-icon material-icons">cloud_upload</i>
+        </a>
       </div>
     </div>
   </div>
 </div>
 <div class="fixed-action-btn">
-  <a class="btn-floating btn-large red">
+  <a class="btn-floating btn-large pink">
     <i class="large material-icons">mode_edit</i>
   </a>
   <ul>

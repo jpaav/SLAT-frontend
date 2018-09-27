@@ -2,23 +2,23 @@
   <div class="modal-content">
     <h4>New Book</h4>
     <form [formGroup]="newBookForm" (ngSubmit)="onSubmit()">
-      <div class="form-group input-field">
+      <div class="input-field">
         <input type="text" id="title" formControlName="title" class="form-control"
                [ngClass]="{ 'is-invalid': submitted && f.title.errors }" autofocus/>
         <label for="title">Title</label>
       </div>
-      <div class="form-group input-field">
-        <input type="authors" id="authors" formControlName="authors" class="form-control"
+      <div class="input-field">
+        <input type="text" id="authors" formControlName="authors" class="form-control"
                [ngClass]="{ 'is-invalid': submitted && f.authors.errors }"/>
         <label for="authors">Authors</label>
       </div>
-      <div class="form-group input-field">
-        <input type="year" id="year" formControlName="year" class="form-control"
+      <div class="input-field">
+        <input type="text" id="year" formControlName="year" class="form-control"
                [ngClass]="{ 'is-invalid': submitted && f.year.errors }"/>
         <label for="year">Year</label>
       </div>
-      <div class="form-group input-field">
-        <input type="edition" id="edition" formControlName="edition" class="form-control"
+      <div class="input-field">
+        <input type="text" id="edition" formControlName="edition" class="form-control"
                [ngClass]="{ 'is-invalid': submitted && f.edition.errors }"/>
         <label for="edition">Edition</label>
       </div>

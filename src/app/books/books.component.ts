@@ -12,6 +12,7 @@ import * as M from 'materialize-css';
   styleUrls: ['./books.component.css']
 })
 export class BooksComponent implements OnInit {
+  loading = false;
   httpOptions = {
     headers: new HttpHeaders(
       {'Authorization': localStorage.getItem('Authorization')}
@@ -26,9 +27,13 @@ export class BooksComponent implements OnInit {
   private http: HttpClient) { }
 
   getBooks (): Observable<Book[]> {
+    this.loading = true;
     return this.http.get<Book[]>(this.booksUrl, this.httpOptions)
       .pipe(
-        tap(books => M.toast({html: 'Fetched books'})),
+        tap((books) => {
+          M.toast({html: 'Fetched books'});
+          this.loading = false;
+        }),
         catchError(this.handleError('getBooks', []))
       );
   }
@@ -48,7 +53,7 @@ export class BooksComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getBooks().subscribe( books => {
+    this.getBooks().subscribe( (books) => {
       this.books = books;
     });
     document.addEventListener('DOMContentLoaded', function() {

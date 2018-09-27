@@ -10,13 +10,15 @@ import {routing} from './routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import { NewbookComponent } from './newbook/newbook.component';
 import {AuthenticationService} from './_services/authentication.service';
+import { BookdetailComponent } from './bookdetail/bookdetail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BooksComponent,
     LoginComponent,
-    NewbookComponent
+    NewbookComponent,
+    BookdetailComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,11 @@
+<div id="bookDetailModal" class="modal">
+  <div class="modal-content">
+    <h4>Book Title</h4>
+    <p>Book info</p>
+    <div class="modal-footer">
+      <a class="modal-close waves-effect waves-red btn-flat">Close</a>
+      <a *ngIf="checkedIn" class="modal-close waves-effect waves-green btn-flat">Check out</a>
+      <a *ngIf="!checkedIn" class="modal-close waves-effect waves-green btn-flat">Check in</a>
+    </div>
+  </div>
+</div>

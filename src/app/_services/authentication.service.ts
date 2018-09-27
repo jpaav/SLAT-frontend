@@ -5,7 +5,6 @@ import {map, tap} from 'rxjs/operators';
 @Injectable()
 export class AuthenticationService {
   url = 'https://slat-backend.herokuapp.com/api-token-auth/';
-  // url = 'http://127.0.0.1:8000/api-token-auth/';
 
   constructor(private http: HttpClient) {
   }
