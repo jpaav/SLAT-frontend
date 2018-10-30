@@ -18,12 +18,14 @@
             </p>
           </div>
         </div>
-        <a href="#" class="valign-wrapper teal-text ">
-          <i class="book-icon material-icons">info</i>
-        </a>
-        <a href="#" class="valign-wrapper teal-text">
-          <i class="book-icon material-icons">cloud_upload</i>
-        </a>
+        <div class="valign-wrapper ">
+          <a (click)="openDetailModal(book)" class="book-link btn-floating btn-large waves-effect waves-light white btn-flat">
+            <i class="book-icon teal-text large material-icons">info</i>
+          </a>
+          <a (click)="openTransactionModal(book)" class="book-link btn-floating btn-large waves-effect waves-light white btn-flat">
+            <i class="book-icon teal-text material-icons">cloud_upload</i>
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -38,3 +40,7 @@
   </ul>
 </div>
 <app-newbook></app-newbook>
+<app-book-detail
+  [book]="bookSelection">
+</app-book-detail>
+<app-new-transaction></app-new-transaction>

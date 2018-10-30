@@ -28,6 +28,13 @@ export class BookApiService {
       );
   }
 
+  getIsCheckedOut (pk): Observable<boolean> {
+    return this.http.get<boolean>(this.getIsCheckedOutString(pk), this.httpOptions)
+      .pipe(
+        catchError(this.handleError('getIsCheckedOut', null))
+      );
+  }
+
   createBook (title: string, authors: string, year: string, edition: string): Observable<Book> {
     this.createBookChange.next();
     return this.http.post<Book>(this.booksUrl, {'title': title, 'authors': authors, 'year': year, 'edition': edition}, this.httpOptions)
@@ -50,6 +57,10 @@ export class BookApiService {
       // }
       return of(result as T);
     };
+  }
+
+  getIsCheckedOutString(pk) {
+    return this.apiUrl + 'book/' + pk.toString() + '/checkedOut';
   }
 
 }

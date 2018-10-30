@@ -4,14 +4,14 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {BooksComponent} from './books/books.component';
 import {LoginComponent} from './login/login.component';
-import {RouterModule, Routes} from '@angular/router';
-import {FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {routing} from './routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import { NewbookComponent } from './newbook/newbook.component';
 import {AuthenticationService} from './_services/authentication.service';
-import { BookdetailComponent } from './bookdetail/bookdetail.component';
 import {BookApiService} from './_services/book-api.service';
+import { BookDetailComponent } from './book-detail/book-detail.component';
+import { NewTransactionComponent } from './new-transaction/new-transaction.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,8 @@ import {BookApiService} from './_services/book-api.service';
     BooksComponent,
     LoginComponent,
     NewbookComponent,
-    BookdetailComponent
+    BookDetailComponent,
+    NewTransactionComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,21 @@
+<div id="newTransactionModal" class="modal">
+  <div class="modal-content">
+    <h4>New Transaction</h4>
+    <form [formGroup]="newTransactionForm" (ngSubmit)="onSubmit()">
+      <div class="input-field">
+        <input type="text" id="first_name" formControlName="first_name" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && f.first_name.errors }" autofocus/>
+        <label for="first_name">First Name</label>
+      </div>
+      <div class="input-field">
+        <input type="text" id="last_name" formControlName="last_name" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }"/>
+        <label for="last_name">Last Name</label>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <a (click)="closeTransactionModal()" class="modal-close waves-effect waves-red btn-flat">Cancel</a>
+    <a (click)="onSubmit()" class="waves-effect waves-green btn-flat">Checkout</a>
+  </div>
+</div>

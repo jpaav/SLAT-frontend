@@ -13,6 +13,7 @@ export class BooksComponent implements OnInit {
   loading = false;
   showUpdateBtn = false;
   books: Book[];
+  bookSelection: Book;
 
   constructor(
     private api: BookApiService) {
@@ -43,5 +44,15 @@ export class BooksComponent implements OnInit {
 
   openAddModal() {
     M.Modal.getInstance(document.getElementById('newBookModal')).open();
+  }
+
+  openTransactionModal(book: Book) {
+    this.bookSelection = book;
+    M.Modal.getInstance(document.getElementById('newTransactionModal')).open();
+  }
+
+  openDetailModal(book: Book) {
+    this.bookSelection = book;
+    M.Modal.getInstance(document.getElementById('detailBookModal')).open();
   }
 }

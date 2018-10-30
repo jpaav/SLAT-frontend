@@ -19,7 +19,6 @@ export class NewbookComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private http: HttpClient,
     private api: BookApiService) {
   }
 
@@ -56,24 +55,12 @@ export class NewbookComponent implements OnInit {
           M.toast({html: 'Created book.'});
         } // complete
     );
+    // TODO use async features to do this insterad of reload
+    location.reload();
   }
 
   closeAddModal() {
     M.Modal.getInstance(document.getElementById('newBookModal')).close();
-  }
-
-  /**
-   * Handle Http operation that failed.
-   * Let the app continue.
-   * @param operation - name of the operation that failed
-   * @param result - optional value to return as the observable result
-   */
-  private handleError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      M.toast({html: 'Error creating book'});
-      return of(result as T);
-    };
   }
 
 }

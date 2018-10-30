@@ -4,4 +4,5 @@ export class Book {
   authors: string;
   year: string;
   edition: string;
+  checked_out: boolean;
 }
