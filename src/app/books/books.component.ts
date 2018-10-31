@@ -46,9 +46,14 @@ export class BooksComponent implements OnInit {
     M.Modal.getInstance(document.getElementById('newBookModal')).open();
   }
 
-  openTransactionModal(book: Book) {
+  openNewTransactionModal(book: Book) {
     this.bookSelection = book;
     M.Modal.getInstance(document.getElementById('newTransactionModal')).open();
+  }
+
+  openEndTransactionModal(book: Book) {
+    this.bookSelection = book;
+    M.Modal.getInstance(document.getElementById('endTransactionModal')).open();
   }
 
   openDetailModal(book: Book) {

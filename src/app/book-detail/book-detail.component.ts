@@ -7,7 +7,7 @@ import {Book} from '../book';
   styleUrls: ['./book-detail.component.css']
 })
 export class BookDetailComponent implements OnInit {
-  @Input('book') book: Book;
+  @Input() book: Book;
   constructor() { }
 
   ngOnInit() {

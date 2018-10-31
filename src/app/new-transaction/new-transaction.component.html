@@ -1,6 +1,6 @@
 <div id="newTransactionModal" class="modal">
-  <div class="modal-content">
-    <h4>New Transaction</h4>
+  <div *ngIf="!isCheckedOut" class="modal-content">
+    <h4>Checkout</h4>
     <form [formGroup]="newTransactionForm" (ngSubmit)="onSubmit()">
       <div class="input-field">
         <input type="text" id="first_name" formControlName="first_name" class="form-control"
@@ -13,6 +13,17 @@
         <label for="last_name">Last Name</label>
       </div>
     </form>
+  </div>
+  <div *ngIf="isCheckedOut" class="modal-content">
+    <h4>Checkin</h4>
+    <div class="input-field">
+      <input type="text" value="{{transaction.first_name}}" id="first_name_readonly" formControlName="first_name" class="form-control" readonly/>
+      <label for="first_name_readonly">First Name</label>
+    </div>
+    <div class="input-field">
+      <input type="text" value="{{transaction.last_name}}" id="last_name_readonly" formControlName="last_name" class="form-control" readonly/>
+      <label for="last_name">Last Name</label>
+    </div>
   </div>
   <div class="modal-footer">
     <a (click)="closeTransactionModal()" class="modal-close waves-effect waves-red btn-flat">Cancel</a>
