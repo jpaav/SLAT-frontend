@@ -12,6 +12,7 @@ import {AuthenticationService} from './_services/authentication.service';
 import {BookApiService} from './_services/book-api.service';
 import { BookDetailComponent } from './book-detail/book-detail.component';
 import { NewTransactionComponent } from './new-transaction/new-transaction.component';
+import {NgxQRCodeModule} from 'ngx-qrcode2';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { NewTransactionComponent } from './new-transaction/new-transaction.compo
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgxQRCodeModule,
     routing,
   ],
   providers: [

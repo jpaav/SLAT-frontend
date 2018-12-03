@@ -3,6 +3,12 @@
     <h4>{{book?.title}}</h4>
     <p>{{book?.authors}}</p>
     <p>{{book?.year}}, {{book?.edition}} ed.</p>
+    <ngx-qrcode
+      [qrc-element-type]="qr_type"
+      [qrc-value] = "qr_value"
+      qrc-class = "aclass"
+      qrc-errorCorrectionLevel = "L">
+    </ngx-qrcode>
   </div>
   <div class="modal-footer">
     <a class="modal-close waves-effect waves-red btn-flat">Close</a>
